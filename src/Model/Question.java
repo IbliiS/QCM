@@ -32,8 +32,6 @@ public class Question {
         return timer;
     }
 
-
-
     public void setTimer(int timer) {
         this.timer = timer;
     }
