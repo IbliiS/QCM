@@ -2,6 +2,7 @@ import Model.Qcm;
 import Model.Question;
 import Model.Reponse;
 import Model.Thematique;
+import View.AdminAccueilVue;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -11,6 +12,10 @@ import java.util.ArrayList;
  */
 public class main {
 
+    /**
+     * L'exécutable du projet
+     * @param args
+     */
     public static void main(String[] args){
         Thematique theme = new Thematique("info");
 
@@ -33,5 +38,8 @@ public class main {
 
         Qcm m = new Qcm(liste, theme);
         System.out.print(m.toString());
+
+        AdminAccueilVue adminAccueilVue = new AdminAccueilVue();
+        adminAccueilVue.setVisible(true);
     }
 }
