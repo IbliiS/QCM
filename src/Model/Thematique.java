@@ -34,8 +34,6 @@ public class Thematique {
 
     @Override
     public String toString() {
-        return "Thematique{" +
-                "nom='" + nom + '\'' +
-                '}';
+        return nom;
     }
 }

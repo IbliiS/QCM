@@ -1,5 +1,7 @@
 package View;
 
+import Controler.AdminCreerQuizzControler;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -72,10 +74,11 @@ public class AdminAccueilVue extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == lancer){
-
-            this.dispose();
+            ListQCMVue listeQuizz = new ListQCMVue();
+            listeQuizz.setVisible(true);
+            //this.dispose();
         } else {
-            AdminCreerQuizz creerQuizz = new AdminCreerQuizz();
+            AdminCreerQuizzVue creerQuizz = new AdminCreerQuizzVue(new AdminCreerQuizzControler());
             creerQuizz.setVisible(true);
             //this.dispose();
         }
