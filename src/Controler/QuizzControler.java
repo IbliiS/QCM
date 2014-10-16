@@ -28,14 +28,17 @@ public class QuizzControler {
         return model;
     }
 
-    public void addQcm(String titre, String thematique, int difficulte){
-        Qcm qcm = new Qcm(titre, new ArrayList<Question>(),new Thematique(thematique), difficulte);
+    public ListQCMVue getListVue() {
+        return listVue;
+    }
+
+    public void addQcm(Qcm qcm){
         model.addQcm(qcm);
         listVue.addQcm(qcm);
         listVue.refresh();
     }
 
-    public ListQCMVue getListVue() {
-        return listVue;
-    }
+   public void addQuestion(){
+
+   }
 }

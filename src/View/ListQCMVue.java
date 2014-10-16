@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class ListQCMVue extends JFrame{
 
     private JPanel panel;
+    private JScrollPane scrollPane;
 
     public ListQCMVue(ArrayList<Qcm> list){
         super();
@@ -31,7 +32,7 @@ public class ListQCMVue extends JFrame{
     public Container buildContentPane(){
         JPanel superPanel = new JPanel(new BorderLayout());
         panel = new JPanel(new OrientableFlowLayout(OrientableFlowLayout.VERTICAL));
-        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane = new JScrollPane(panel);
         superPanel.add(scrollPane, BorderLayout.CENTER);
         return superPanel;
     }

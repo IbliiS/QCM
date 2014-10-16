@@ -8,6 +8,8 @@ import java.util.List;
  */
 public class Qcm {
 
+    private int ID = 0;
+    private int id = 0;
     private String titre;
     private ArrayList<Question> qcm;
     private Thematique thematique;
@@ -17,10 +19,12 @@ public class Qcm {
      * Constructeur par défaut
      */
     public Qcm() {
+        id = ID;
         titre = "";
         qcm = new ArrayList<Question>();
         thematique = new Thematique("");
         difficulte = 1;
+        ID++;
     }
 
     /**
@@ -31,10 +35,12 @@ public class Qcm {
      * @param difficulte
      */
     public Qcm(String titre, ArrayList<Question> qcm, Thematique thematique, int difficulte) {
+        id = ID;
         this.titre = titre;
         this.qcm = qcm;
         this.thematique = thematique;
         this.difficulte = difficulte;
+        ID++;
     }
 
     /**
@@ -107,6 +113,14 @@ public class Qcm {
      */
     public void setDifficulte(int difficulte) {
         this.difficulte = difficulte;
+    }
+
+    /**
+     * Getter de l'id
+     * @return : l'id unique du qcm
+     */
+    public int getId() {
+        return id;
     }
 
     /**

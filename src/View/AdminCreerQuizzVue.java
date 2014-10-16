@@ -1,6 +1,9 @@
 package View;
 
 import Controler.QuizzControler;
+import Model.Qcm;
+import Model.Question;
+import Model.Thematique;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -8,6 +11,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by Fabien on 14/10/2014.
@@ -111,7 +115,10 @@ public class AdminCreerQuizzVue extends JFrame {
                     difficulte = 2;
                 if (b4.isSelected())
                     difficulte = 3;
-                controler.addQcm(titre.getText(), thematique.getSelectedItem().toString(), difficulte);
+                Qcm qcm = new Qcm(titre.getText(), new ArrayList<Question>(),new Thematique(thematique.getSelectedItem().toString()), difficulte);
+                controler.addQcm(qcm);
+                AddQuestionVue addQuestionVue = new AddQuestionVue(controler, qcm);
+                dispose();
             }
         }
     }

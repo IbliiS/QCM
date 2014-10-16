@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public class AdminAccueilVue extends JFrame implements ActionListener{
 
-    private JButton lancer, creer;
+    private JButton lancer, creer, quitter;
     private QuizzControler controler;
 
     /**
@@ -49,9 +49,11 @@ public class AdminAccueilVue extends JFrame implements ActionListener{
 
         lancer = new JButton("Lancer un test");
         creer = new JButton("Créer un test");
+        quitter = new JButton("Quitter le programme");
 
         lancer.addActionListener(this);
         creer.addActionListener(this);
+        quitter.addActionListener(this);
 
         panel.add(lancer);
         panel.add(creer);
@@ -66,6 +68,7 @@ public class AdminAccueilVue extends JFrame implements ActionListener{
         }
 
         superPanel.add(panel, BorderLayout.NORTH);
+        superPanel.add(quitter, BorderLayout.SOUTH);
         return superPanel;
     }
 
@@ -77,11 +80,11 @@ public class AdminAccueilVue extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == lancer){
             controler.getListVue().setVisible(true);
-            //this.dispose();
-        } else {
+        } else if (e.getSource() == creer) {
             AdminCreerQuizzVue creerQuizz = new AdminCreerQuizzVue(controler);
             creerQuizz.setVisible(true);
-            //this.dispose();
+        } else {
+            System.exit(0);
         }
     }
 }
