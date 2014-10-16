@@ -76,8 +76,7 @@ public class AdminAccueilVue extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == lancer){
-            ListQCMVue listeQuizz = new ListQCMVue(controler.getModel().getList());
-            listeQuizz.setVisible(true);
+            controler.getListVue().setVisible(true);
             //this.dispose();
         } else {
             AdminCreerQuizzVue creerQuizz = new AdminCreerQuizzVue(controler);

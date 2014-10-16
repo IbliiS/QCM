@@ -32,5 +32,10 @@ public class QuizzControler {
         Qcm qcm = new Qcm(titre, new ArrayList<Question>(),new Thematique(thematique), difficulte);
         model.addQcm(qcm);
         listVue.addQcm(qcm);
+        listVue.refresh();
+    }
+
+    public ListQCMVue getListVue() {
+        return listVue;
     }
 }

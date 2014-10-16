@@ -1,6 +1,5 @@
 package View;
 
-import Controler.QuizzControler;
 import Model.Qcm;
 import sun.awt.OrientableFlowLayout;
 
@@ -26,14 +25,16 @@ public class ListQCMVue extends JFrame{
         setSize(600,600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setContentPane(buildContentPane());
+    }
 
+    public Container buildContentPane(){
         JPanel superPanel = new JPanel(new BorderLayout());
         panel = new JPanel(new OrientableFlowLayout(OrientableFlowLayout.VERTICAL));
         JScrollPane scrollPane = new JScrollPane(panel);
         superPanel.add(scrollPane, BorderLayout.CENTER);
-        setContentPane(superPanel);
+        return superPanel;
     }
-
     public void loadList(ArrayList<Qcm> list){
         for (Qcm qcm : list){
             addQcm(qcm);
@@ -42,6 +43,9 @@ public class ListQCMVue extends JFrame{
 
     public void addQcm(Qcm qcm) {
         panel.add(new QcmVue(qcm).getPanel());
-        setVisible(true);
+    }
+
+    public void refresh() {
+        this.revalidate();
     }
 }
