@@ -4,26 +4,33 @@ import Model.ListQCMModel;
 import Model.Qcm;
 import Model.Question;
 import Model.Thematique;
+import View.AdminAccueilVue;
 import View.ListQCMVue;
-import View.QcmVue;
 
 import java.util.ArrayList;
 
 /**
  * Created by Fabien on 15/10/2014.
  */
-public class AdminCreerQuizzControler {
+public class QuizzControler {
     private ListQCMModel model;
-    private ListQCMVue vue;
+    private AdminAccueilVue vue;
+    private ListQCMVue listVue;
 
-    public AdminCreerQuizzControler() {
-        model = new ListQCMModel();
-        vue = new ListQCMVue();
+    public QuizzControler(ListQCMModel l) {
+        model = l;
+        vue = new AdminAccueilVue(this);
+        vue.setVisible(true);
+        listVue = new ListQCMVue(model.getList());
+    }
+
+    public ListQCMModel getModel() {
+        return model;
     }
 
     public void addQcm(String titre, String thematique, int difficulte){
         Qcm qcm = new Qcm(titre, new ArrayList<Question>(),new Thematique(thematique), difficulte);
         model.addQcm(qcm);
-        vue.addQcm(new QcmVue(qcm));
+        listVue.addQcm(qcm);
     }
 }

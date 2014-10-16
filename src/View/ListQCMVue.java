@@ -1,22 +1,24 @@
 package View;
 
+import Controler.QuizzControler;
 import Model.Qcm;
 import sun.awt.OrientableFlowLayout;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by Fabien on 15/10/2014.
  */
 public class ListQCMVue extends JFrame{
 
-    JPanel panel;
+    private JPanel panel;
 
-    public ListQCMVue(){
+    public ListQCMVue(ArrayList<Qcm> list){
         super();
         build();
+        loadList(list);
     }
 
     private void build() {
@@ -32,8 +34,14 @@ public class ListQCMVue extends JFrame{
         setContentPane(superPanel);
     }
 
-    public void addQcm(QcmVue qcm) {
-        panel.add(qcm.getPanel());
+    public void loadList(ArrayList<Qcm> list){
+        for (Qcm qcm : list){
+            addQcm(qcm);
+        }
+    }
+
+    public void addQcm(Qcm qcm) {
+        panel.add(new QcmVue(qcm).getPanel());
         setVisible(true);
     }
 }

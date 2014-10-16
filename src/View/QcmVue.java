@@ -18,6 +18,7 @@ public class QcmVue {
      */
     public QcmVue(Qcm qcm){
         panel = new JPanel(new GridLayout(4,2));
+        panel.setSize(new Dimension(400, 200));
 
         JLabel titre = new JLabel("Titre : "+qcm.getTitre());
         JLabel thematique = new JLabel("Thematique : "+qcm.getThematique());
@@ -35,6 +36,25 @@ public class QcmVue {
         panel.add(difficulte);
         panel.add(modifier);
         panel.add(nbQuestion);
+
+        switch (qcm.getDifficulte()){
+            case 0:
+                panel.setBackground(Color.GREEN);
+                break;
+            case 1:
+                panel.setBackground(Color.YELLOW);
+                break;
+            case 2:
+                panel.setBackground(Color.ORANGE);
+                break;
+            case 3:
+                panel.setBackground(Color.RED);
+                titre.setForeground(Color.WHITE);
+                thematique.setForeground(Color.WHITE);
+                difficulte.setForeground(Color.WHITE);
+                nbQuestion.setForeground(Color.WHITE);
+                break;
+        }
     }
 
     /**

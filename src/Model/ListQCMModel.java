@@ -18,6 +18,14 @@ public class ListQCMModel {
         System.out.println(toString());
     }
 
+    /**
+     * Getter de la liste
+     * @return : return la liste des qcm existants
+     */
+    public ArrayList<Qcm> getList() {
+        return list;
+    }
+
     @Override
     public String toString() {
         return "ListQCMModel{" +

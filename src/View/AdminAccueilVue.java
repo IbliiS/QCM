@@ -1,6 +1,6 @@
 package View;
 
-import Controler.AdminCreerQuizzControler;
+import Controler.QuizzControler;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,13 +16,15 @@ import java.io.IOException;
  */
 public class AdminAccueilVue extends JFrame implements ActionListener{
 
-    JButton lancer, creer;
+    private JButton lancer, creer;
+    private QuizzControler controler;
 
     /**
      * Constructeur de classe
      */
-    public AdminAccueilVue(){
+    public AdminAccueilVue(QuizzControler controler){
         super();
+        this.controler = controler;
         build();
     }
 
@@ -74,11 +76,11 @@ public class AdminAccueilVue extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == lancer){
-            ListQCMVue listeQuizz = new ListQCMVue();
+            ListQCMVue listeQuizz = new ListQCMVue(controler.getModel().getList());
             listeQuizz.setVisible(true);
             //this.dispose();
         } else {
-            AdminCreerQuizzVue creerQuizz = new AdminCreerQuizzVue(new AdminCreerQuizzControler());
+            AdminCreerQuizzVue creerQuizz = new AdminCreerQuizzVue(controler);
             creerQuizz.setVisible(true);
             //this.dispose();
         }

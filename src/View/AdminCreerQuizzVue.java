@@ -1,6 +1,6 @@
 package View;
 
-import Controler.AdminCreerQuizzControler;
+import Controler.QuizzControler;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -16,15 +16,15 @@ public class AdminCreerQuizzVue extends JFrame {
     private String tableauThematique[] = {"Non défini", "theme1", "theme2", "theme3" , "theme4"};
     private JComboBox<String> thematique;
     private JTextField titre;
-    private AdminCreerQuizzControler controler;
+    private QuizzControler controler;
     private JRadioButton b1, b2, b3, b4;
 
     /**
      * Constructeur de classe
      */
-    public AdminCreerQuizzVue(AdminCreerQuizzControler ctrl){
+    public AdminCreerQuizzVue(QuizzControler c){
         super();
-        controler = ctrl;
+        controler = c;
         build();
     }
 
@@ -112,7 +112,6 @@ public class AdminCreerQuizzVue extends JFrame {
                 if (b4.isSelected())
                     difficulte = 3;
                 controler.addQcm(titre.getText(), thematique.getSelectedItem().toString(), difficulte);
-
             }
         }
     }
