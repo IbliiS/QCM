@@ -14,9 +14,11 @@ public class ListQCMVue extends JFrame{
 
     private JPanel panel;
     private JScrollPane scrollPane;
+    private ArrayList<QcmVue> liste;
 
     public ListQCMVue(ArrayList<Qcm> list){
         super();
+        liste = new ArrayList<QcmVue>();
         build();
         loadList(list);
     }
@@ -44,9 +46,19 @@ public class ListQCMVue extends JFrame{
 
     public void addQcm(Qcm qcm) {
         panel.add(new QcmVue(qcm).getPanel());
+        liste.add(new QcmVue(qcm));
     }
 
     public void refresh() {
         this.revalidate();
+    }
+
+    public void addQuestion(int id, int i) {
+        for (QcmVue q : liste){
+            if (q.getId() == id){
+                q.setNbQuestion(i);
+                System.out.println(i);
+            }
+        }
     }
 }

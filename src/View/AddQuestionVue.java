@@ -2,11 +2,14 @@ package View;
 
 import Controler.QuizzControler;
 import Model.Qcm;
+import Model.Question;
+import Model.Reponse;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by Fabien on 16/10/2014.
@@ -14,12 +17,14 @@ import java.awt.event.ActionListener;
 public class AddQuestionVue extends JFrame{
 
     private Qcm qcm;
+    private QuizzControler controler;
     private JButton ajouter, terminer;
-    private JTextField question, reponse1, reponse2, reponse3, reponse4;
+    private JTextField question, reponse1, reponse2, reponse3, reponse4, timer;
     private JCheckBox check1, check2, check3, check4;
 
     public AddQuestionVue(QuizzControler controler, Qcm q){
         super();
+        this.controler = controler;
         qcm = q;
         build();
     }
@@ -38,7 +43,7 @@ public class AddQuestionVue extends JFrame{
         JLabel titre = new JLabel("QCM : "+qcm.getTitre());
         titre.setHorizontalAlignment(JLabel.CENTER);
         
-        JPanel centerPanel = new JPanel(new GridLayout(6,2));
+        JPanel centerPanel = new JPanel(new GridLayout(7,2));
 
         JLabel questionLabel = new JLabel("Question : ");
         questionLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -60,6 +65,9 @@ public class AddQuestionVue extends JFrame{
         reponse3 = new JTextField();
         reponse4 = new JTextField();
 
+        JLabel timerLabel = new JLabel("Limite de temps pour cette question : ");
+        timer = new JTextField();
+
         centerPanel.add(questionLabel);
         centerPanel.add(question);
         centerPanel.add(reponseLabel);
@@ -72,6 +80,8 @@ public class AddQuestionVue extends JFrame{
         centerPanel.add(reponse3);
         centerPanel.add(check4);
         centerPanel.add(reponse4);
+        centerPanel.add(timerLabel);
+        centerPanel.add(timer);
 
         JPanel southPanel = new JPanel(new FlowLayout());
         ajouter = new JButton("Ajouter");
@@ -96,7 +106,17 @@ public class AddQuestionVue extends JFrame{
                 dispose();
             } else {
                 if (estCorrect()){
-
+                    Question q = new Question();
+                    q.setQuestion(question.getText());
+                    q.setTimer((Integer.parseInt(timer.getText())));
+                    q.setThematique(qcm.getThematique());
+                    ArrayList<Reponse> reponselist = new ArrayList<Reponse>();
+                    reponselist.add(new Reponse(reponse1.getText(), check1.isSelected()));
+                    reponselist.add(new Reponse(reponse2.getText(), check2.isSelected()));
+                    reponselist.add(new Reponse(reponse3.getText(), check3.isSelected()));
+                    reponselist.add(new Reponse(reponse4.getText(), check4.isSelected()));
+                    q.setReponses(reponselist);
+                    controler.addQuestion(qcm, q);
                 }
             }
         }
@@ -134,6 +154,18 @@ public class AddQuestionVue extends JFrame{
             b = false;
         } else {
             reponse4.setBackground(Color.WHITE);
+        }
+        if (timer.getText().equals("")){
+            timer.setBackground(Color.RED);
+            b = false;
+        } else {
+            try {
+                Integer.parseInt(timer.getText());
+                timer.setBackground(Color.WHITE);
+            } catch (NumberFormatException nfe){
+                timer.setBackground(Color.RED);
+                b = false;
+            }
         }
         if (!(check1.isSelected() || check2.isSelected() || check3.isSelected() || check4.isSelected())){
            new MessageBox("Vous devez sélectionner au moins une bonne réponse !");

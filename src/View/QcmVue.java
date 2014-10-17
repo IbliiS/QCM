@@ -11,19 +11,23 @@ import java.awt.*;
 public class QcmVue {
 
     private JPanel panel;
+    private int id;
+    private JLabel nbQuestion;
 
     /**
      * Crée un Jpanel pour un qcm donné
      * @param qcm
      */
     public QcmVue(Qcm qcm){
+        id = qcm.getId();
+
         panel = new JPanel(new GridLayout(4,2));
         panel.setSize(new Dimension(400, 200));
 
         JLabel titre = new JLabel("Titre : "+qcm.getTitre());
         JLabel thematique = new JLabel("Thematique : "+qcm.getThematique());
         JLabel difficulte = new JLabel("Difficulte : "+String.valueOf(qcm.getDifficulte()));
-        JLabel nbQuestion = new JLabel(String.valueOf(qcm.nbQuestion())+" questions");
+        nbQuestion = new JLabel(qcm.nbQuestion()+" question(s)");
 
         JButton lancer = new JButton("Lancer");
         JButton voir = new JButton("Voir");
@@ -63,5 +67,13 @@ public class QcmVue {
      */
     public JPanel getPanel() {
         return panel;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setNbQuestion(int i) {
+        nbQuestion.setText(String.valueOf(i)+" question(s)");
     }
 }

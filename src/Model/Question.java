@@ -12,6 +12,13 @@ public class Question {
     private Thematique thematique;
     private String question;
 
+    public Question() {
+        reponses = new ArrayList<Reponse>();
+        timer = 0;
+        thematique = new Thematique("");
+        question = "";
+    }
+
     /**
      * Constructeur de la classe
      * @param reponses

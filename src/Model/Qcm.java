@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class Qcm {
 
-    private int ID = 0;
-    private int id = 0;
+    public static int ID = 0;
+    private int id;
     private String titre;
     private ArrayList<Question> qcm;
     private Thematique thematique;
@@ -41,6 +41,10 @@ public class Qcm {
         this.thematique = thematique;
         this.difficulte = difficulte;
         ID++;
+    }
+
+    public void addQuestion(Question question) {
+        qcm.add(question);
     }
 
     /**
@@ -130,7 +134,8 @@ public class Qcm {
     @Override
     public String toString() {
         return "Qcm{" +
-                "titre='" + titre + '\'' +
+                "id="+id+
+                ", titre='" + titre + '\'' +
                 ", qcm=" + qcm +
                 ", thematique=" + thematique +
                 ", difficulte=" + difficulte +

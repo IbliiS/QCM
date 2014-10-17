@@ -38,7 +38,16 @@ public class QuizzControler {
         listVue.refresh();
     }
 
-   public void addQuestion(){
-
+   public void addQuestion(Qcm qcm, Question question){
+        for (Qcm q : model.getList()){
+            //System.out.println(q.getId() == qcm.getId());
+            if (q.getId() == qcm.getId()){
+                q.addQuestion(question);
+                listVue.addQuestion(q.getId(), q.nbQuestion());
+                listVue.refresh();
+                //System.out.println(q.getQcm().size());
+            }
+        }
+       //System.out.println("Ajout :::::::::::::::"+model.toString());
    }
 }
